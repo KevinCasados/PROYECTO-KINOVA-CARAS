@@ -1,0 +1,151 @@
+@use "variables"; // Importa variables para colores y fuentes.
+@use "mixins";    // Importa mixins reutilizables.
+
+.header {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+
+  .container {
+    padding: 0 20px;
+    max-width: 1840px;
+    margin: 0 auto;
+  }
+
+  .navigation {
+    @include mixins.flex-center(row, space-between, center);
+    padding: 2rem 0;
+
+    .logo img {
+      max-width: 150px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .menu {
+      @include mixins.flex-center(row, flex-start, center);
+      gap: 15px;
+
+      .nav {
+        display: flex;
+        list-style: none;
+        gap: 15px;
+
+        a {
+          text-decoration: none;
+          color: variables.$secondary-color;
+          font-size: 1rem;
+          padding: 5px 10px;
+          font-weight: 400;
+          border-bottom: 2px solid transparent;
+          @include mixins.transition(color, border-color, transform);
+          display: inline-block;
+          transition: color 0.3s, border-color 0.3s, transform 0.3s;
+
+          &:hover {
+            color: variables.$secondary-color;
+            border-color: variables.$primary-color;
+            transform: scale(1.05);
+          }
+
+          &.active, li.active > & {
+            color: variables.$primary-color;
+            border-color: variables.$primary-color;
+            transform: scale(1.05); /* Refuerza el estilo activo */
+          }
+        } 
+      }
+    }
+  }
+
+  .search-section {
+    .search-button {
+      background: variables.$secondary-color;
+      padding: 10px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      @include mixins.flex-center();
+      @include mixins.transition(background-color, transform);
+      transition: color 0.3s, border-color 0.3s, transform 0.3s;
+
+      &:hover {
+        background-color: variables.$secondary-color;
+        transform: scale(1.05);
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+
+    span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: variables.$secondary-color;
+      border-radius: 5px;
+    }
+  }
+}
+
+// Responsividad para Header
+@include mixins.responsive(variables.$breakpoint-md) {
+  .navigation {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: variables.$primary-color;
+      padding: 1rem;
+      width: 100%;
+
+      .nav {
+        flex-direction: column;
+        gap: 10px;
+
+        a.active {
+          color: variables.$secondary-color;
+          border-color: variables.$primary-color;
+        }
+      }
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    .hamburger.active {
+      display: flex;
+    }
+
+    .menu {
+      display: none;
+    }
+  }
+  .header .navigation .menu {
+    display: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+  }
+}
