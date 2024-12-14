@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
+    <script type="module" src="js/script.js"></script>
     <!-- GOOGLE FONT 1-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,59 +24,117 @@
       <!-- Header -->
       <header class="header">
         <div class="container">
-            <div class="navigation">
-                <div class="logo">
-                    <img src="assets/Logo 2.png" alt="Logo CARAS">
-                </div>
-                <div class="hamburger" onclick="toggleMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="menu">
-                    <ul class="nav">
-                        <li class="active"><a href="#">Inicio</a></li>
-                        <li><a href="#">Entretenimiento</a></li>
-                        <li><a href="#">Realeza</a></li>
-                        <li><a href="#">Moda</a></li>
-                        <li><a href="#">Estilo de Vida</a></li>
-                    </ul>
-                    <div class="search-section">
-                      <button aria-label="Buscar" class="search-button">
-                          <img src="assets/search-icon-black.svg" alt="Icono de Buscar">
-                      </button>
-                  </div>
-                </div>
+          <div class="navigation">
+            <div class="logo">
+              <img class="logo-caras" src="assets/Logo 2.png" alt="Logo CARAS" />
             </div>
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="menu">
+              <ul class="nav">
+                <li class="active"><a href="#">Inicio</a></li>
+                <li><a href="#">Entretenimiento</a></li>
+                <li><a href="#">Realeza</a></li>
+                <li><a href="#">Moda</a></li>
+                <li><a href="#">Estilo de Vida</a></li>
+              </ul>
+              <div class="search-section">
+                <button aria-label="Buscar" class="search-button">
+                  <img src="assets/search-icon-black.svg" alt="Icono de Buscar" />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
-      <!-- Din del Header -->
 
+      <nav class="menu-hamburguesa">
+        <div class="close-buton-container">
+          <img class="menu-logo" src="assets/Logo 2.png" alt="Logo CARAS" />
+          <button class="close-button" aria-label="Cerrar menú">X</button>
+        </div>
+        <ul class="nav-hamburguesa">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Entretenimiento</a></li>
+          <li><a href="#">Realeza</a></li>
+          <li><a href="#">Moda</a></li>
+          <li><a href="#">Estilo de Vida</a></li>
+        </ul>
+      </nav>
+      <!-- Fin del Header -->
+
+      <!-- Carrousel -->
       <section class="carousel">
          <!-- Flecha Izquierda -->
         <img src="assets/left-arrow-icon.svg" alt="Flecha Izquierda" class="arrow arrow-left">
 
-        <article class="carousel-item">
-          <article class="image-container">
-            <img src="assets/carrousel-img-3.png" alt="Imagen de fondo" class="background-image">
-            <div class="overlay"></div>
+        <!-- Artículos del carrusel -->
+        <div class="carousel-items">
+          <article class="carousel-item">
+            <article class="image-container">
+              <img src="assets/carrousel-img-6.jpg" alt="Imagen de fondo" class="background-image">
+              <div class="overlay"></div>
+            </article>
+            <article class="content">
+              <div class="category-label">FÍSICA</div>
+              <h2 class="news-title">Nuevo Descubrimiento en Física de Partículas Promete Desentrañar los Misterios del Universo</h2>
+              <div class="info">
+                <span class="author">admin</span>
+                <span class="date">junio 23, 2024</span>
+                <span class="comments">
+                  <img src="assets/comments-icon.svg" alt="Comentarios" class="comments-icon"> 0
+                </span>
+              </div>
+            </article>
           </article>
-          <article class="content">
-            <div class="category-label">IA Y ROBÓTICA</div>
-            <h2 class="news-title">Nuevo Robot Autónomo Promete Revolucionar la Industria de la Logística</h2>
-            <div class="info">
-              <span class="author">admin</span>
-              <span class="date">junio 21, 2024</span>
-              <span class="comments">
-                <img src="assets/comments-icon.svg" alt="Comentarios" class="comments-icon"> 0
-              </span>
-            </div>
+          <article class="carousel-item">
+            <article class="image-container">
+              <img src="assets/carrousel-img-5.jpg" alt="Imagen de fondo" class="background-image">
+              <div class="overlay"></div>
+            </article>
+            <article class="content">
+              <div class="category-label">TECNOLOGÍA</div>
+              <h2 class="news-title">Avance Tecnológico Permite Desarrollar Baterías de Larga Duración</h2>
+              <div class="info">
+                <span class="author">admin</span>
+                <span class="date">junio 22, 2024</span>
+                <span class="comments">
+                  <img src="assets/comments-icon.svg" alt="Comentarios" class="comments-icon"> 0
+                </span>
+              </div>
+            </article>
           </article>
-        </article>
-
+          <article class="carousel-item active">
+            <article class="image-container">
+              <img src="assets/carrousel-img-3.png" alt="Imagen de fondo" class="background-image">
+              <div class="overlay"></div>
+            </article>
+            <article class="content">
+              <div class="category-label">IA Y ROBÓTICA</div>
+              <h2 class="news-title">Nuevo Robot Autónomo Promete Revolucionar la Industria de la Logística</h2>
+              <div class="info">
+                <span class="author">admin</span>
+                <span class="date">junio 21, 2024</span>
+                <span class="comments">
+                  <img src="assets/comments-icon.svg" alt="Comentarios" class="comments-icon"> 0
+                </span>
+              </div>
+            </article>
+          </article>
+          
         <!-- Flecha Derecha -->
         <img src="assets/right-arrow-icon.svg" alt="Flecha Derecha" class="arrow arrow-right">
+        <!-- Indicadores -->
+        <div class="carousel-indicators">
+          <span class="indicator active"></span>
+          <span class="indicator"></span>
+          <span class="indicator"></span>
+        </div>
       </section>
+      <!-- Fin del Carrousel -->
 
       <!-- Seccion de Articulos Destacados -->
       <section class="featured-articles">
@@ -309,7 +368,7 @@
                 en su bandeja de entrada.
               </p>
               <div class="news-lettar">
-                <form action="">
+                <form id="subscriptionForm" action="">
                   <div class="input-row">
                     <input type="text" class="input-fild" placeholder="Nombre" />
                   </div>
@@ -390,13 +449,5 @@
     </footer>
     <!-- Fin del Footer -->
     </main>
-    <script>
-      function toggleMenu() {
-          const menu = document.querySelector('.menu');
-          const hamburger = document.querySelector('.hamburger');
-          menu.classList.toggle('active');
-          hamburger.classList.toggle('active');
-      }
-  </script>
   </body>
 </html>
