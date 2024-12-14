@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *, ::after, ::before {
   padding: 0;
   margin: 0;
@@ -34,10 +35,17 @@ p {
 }
 
 .header {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-  position: absolute;
-  z-index: 10;
+  position: fixed;
+  top: 0;
   width: 100%;
+  z-index: 100;
+  transition: top 0.5s ease, background-color 0.3s ease;
+}
+.header.top {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+}
+.header.sticky {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 .header .container {
   padding: 0 20px;
@@ -248,10 +256,46 @@ p {
   max-width: 100%;
   overflow: hidden;
 }
+.carousel .carousel-items {
+  position: relative;
+  display: flex;
+  transition: opacity 1s ease; /* Transición de fade */
+  background-color: black;
+}
 .carousel .carousel-item {
   position: relative;
   width: 100%;
   height: 89vh;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.carousel .carousel-item.active {
+  opacity: 1;
+  position: relative;
+  background-color: transparent;
+}
+.carousel .carousel-item .carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+.carousel .carousel-item .carousel-indicators .indicator {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.carousel .carousel-item .carousel-indicators .indicator.active {
+  background: #007bff;
 }
 .carousel .carousel-item .image-container {
   position: relative;
@@ -320,13 +364,18 @@ p {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
 }
 .carousel .arrow-left {
   left: 5%;
 }
 .carousel .arrow-right {
   right: 5%;
+}
+.carousel:hover .arrow {
+  opacity: 1; /* Mostrar flechas al pasar el cursor */
 }
 
 @media (max-width: 768px) {
@@ -618,6 +667,25 @@ p {
   }
 }
 
+.alert-box {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: top 0.5s ease;
+  z-index: 1000;
+}
+.alert-box.success {
+  background-color: #4caf50;
+  color: #fff;
+}
+.alert-box.error {
+  background-color: #f44336;
+  color: #fff;
+}
+
 .footer-wrapper {
   background: linear-gradient(0deg, #213944 8.31%, #000000 88.22%);
   color: #ffffff;
@@ -758,6 +826,85 @@ p {
     width: 100%;
   }
   .footer-container .subscribe-section button {
+    width: 100%;
+  }
+}
+.menu-hamburguesa {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Oculto inicialmente */
+  width: 300px;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  background-color: #ed1e1e;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+.menu-hamburguesa.active {
+  right: 0; /* Aparece desde la derecha */
+}
+.menu-hamburguesa .close-buton-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+.menu-hamburguesa .close-buton-container .menu-logo {
+  width: 100px;
+}
+.menu-hamburguesa .close-button {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.2rem; /* Tamaño del texto */
+  font-weight: bold;
+  color: #ed1e1e; /* Usa el color secundario definido en tus variables */
+  background-color: #ffffff;
+  cursor: pointer;
+  padding: 3px 7px;
+  border-radius: 50%;
+  transition: transform 0.3s, background-color 0.3s;
+}
+.menu-hamburguesa .close-button:hover {
+  transform: scale(1.1); /* Ampliación al pasar el cursor */
+}
+.menu-hamburguesa ul.nav-hamburguesa {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-hamburguesa ul.nav-hamburguesa li {
+  margin: 15px 0;
+}
+.menu-hamburguesa ul.nav-hamburguesa li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 5px 0;
+  font-weight: 400;
+  border-bottom: 2px solid transparent;
+  transition: color, border-color, transform 0.3s ease-in-out;
+  display: inline-block;
+  transition: color 0.3s, border-color 0.3s, transform 0.3s;
+}
+.menu-hamburguesa ul.nav-hamburguesa li a:hover {
+  color: #ffffff;
+  border-color: #ed1e1e;
+  transform: scale(1.05);
+}
+
+@media (max-width: 1094px) {
+  .menu-hamburguesa {
+    display: block;
+  }
+}
+@media (max-width: 700px) {
+  .menu-hamburguesa {
     width: 100%;
   }
 }

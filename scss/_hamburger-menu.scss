@@ -1,0 +1,93 @@
+@use "variables"; // Importa variables para colores y fuentes.
+@use "mixins";    // Importa mixins reutilizables.
+
+.menu-hamburguesa {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Oculto inicialmente */
+  width: 300px;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  background-color: variables.$primary-color;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  transition: right 0.3s ease;
+  z-index: 1000;
+
+  &.active {
+    right: 0; /* Aparece desde la derecha */
+  }
+
+  .close-buton-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+
+    .menu-logo {
+        width: 100px;
+    }
+  }
+
+  .close-button {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 1.2rem; /* Tamaño del texto */
+    font-weight: bold;
+    color: variables.$primary-color; /* Usa el color secundario definido en tus variables */
+    background-color: variables.$secondary-color;
+    cursor: pointer;
+    padding: 3px 7px;
+    border-radius: 50%;
+    transition: transform 0.3s, background-color 0.3s;
+
+    &:hover {
+      transform: scale(1.1); /* Ampliación al pasar el cursor */
+    }
+    }
+
+  ul.nav-hamburguesa {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 15px 0;
+
+      a {
+        text-decoration: none;
+          color: variables.$secondary-color;
+          font-size: 1rem;
+          padding: 5px 0;
+          font-weight: 400;
+          border-bottom: 2px solid transparent;
+          @include mixins.transition(color, border-color, transform);
+          display: inline-block;
+          transition: color 0.3s, border-color 0.3s, transform 0.3s;
+
+        &:hover {
+            color: variables.$secondary-color;
+            border-color: variables.$primary-color;
+            transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+// Responsividad: Mostrar el menú hamburguesa en pantallas pequeñas
+@include mixins.responsive(1094px) {
+  .menu-hamburguesa {
+    display: block;
+  }
+}
+
+@include mixins.responsive(700px) {
+    .menu-hamburguesa {
+      width: 100%;
+    }
+  }
